@@ -40,3 +40,8 @@ run following command in R console
 ⦁	install.packages("tm") # create document term matrix
 
 ⦁	install.packages("magrittr") # R utility
+
+# Result 
+
+![result 1](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(676).png)
+![result 2](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(675).png)
