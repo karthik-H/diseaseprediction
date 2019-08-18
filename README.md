@@ -1,4 +1,4 @@
-# diseaseprediction
+# DiseasePrediction
 disease prediction using symptoms
 # Features
 ⦁	  Uses multinomial naive bayes as classification model.
@@ -8,7 +8,9 @@ disease prediction using symptoms
 all the disease and symptoms names are encoded in UMCL format for more refrence about UMCL :(https://www.nlm.nih.gov/research/umls/sourcereleasedocs/current/ICD10CM/index.html)
 
 ⦁	disease_symptom_mapping.csv file provide info about symptoms associated with disease
+
 ⦁	disease_symptom_mapping_training.csv file used to train model and has same content as disease_symptom_mapping.csv 
+
 ⦁	disease_symptom_dictionary.csv file has mapping for UMCL code and name associated with it
 
 plumber.R file contains code for application working
