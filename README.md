@@ -43,5 +43,7 @@ run following command in R console
 
 # Result 
 
-![result 1](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(676).png)
-![result 2](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(675).png)
+![result 1](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(695).png)
+![result 2](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(696).png)
+![result 3](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(697).png)
+![result 4](https://github.com/karthik-H/diseaseprediction/blob/master/screenshot/Screenshot%20(698).png)
