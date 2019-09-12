@@ -42,8 +42,8 @@ run following command in R console
 
 ⦁	install.packages("magrittr") # R utility
 
-#plumberV1.0 will just list the probablity of disease
-#plumberV1.1 has question and answer feature
+# plumberV1.0 will just list the probablity of disease
+# plumberV1.1 has question and answer feature
 
 # Result 
 
