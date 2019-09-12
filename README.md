@@ -24,7 +24,7 @@ plumber.R file contains code for application working
 # Usage
 ⦁	clone the repository 
 
-⦁	open plumber.R in R studio 
+⦁	open plumberV1.1.R in R studio 
 
 ⦁	install required packages
 
@@ -41,6 +41,9 @@ run following command in R console
 ⦁	install.packages("tm") # create document term matrix
 
 ⦁	install.packages("magrittr") # R utility
+
+#plumberV1.0 will just list the probablity of disease
+#plumberV1.1 has question and answer feature
 
 # Result 
 
