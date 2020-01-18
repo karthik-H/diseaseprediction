@@ -319,7 +319,7 @@ C0019825,hoarseness
 C0205400,thicken
 C0028081,night sweat
 C0233308,spontaneous rupture of membranes
-C0032739,NA
+C0032739,UNK
 C0008033,pleuritic pain
 C0239134,productive cough
 C0026827,muscle hypotonia
@@ -579,7 +579,7 @@ C0277823,charleyhorse
 C0205254,sedentary
 C0424749,feels hot/feverish
 C1517205,flare
-Â,NA
+HLP,UNK
 C0232267,pericardial friction rub
 C0424337,hoard
 C0030318,panic
@@ -605,3 +605,8 @@ C0425491,catching breath
 C0456091,large-for-dates fetus
 C0231441,immobile
 C0455204,homicidal thoughts
+HLPSY01,Loss of appetite
+HLPSY02,indigestion
+HLPSY03,difficulty speaking
+HLPSY04,temporary loss of vision
+HLPSY05,swelling of legs

@@ -1,0 +1,148 @@
+1569421313 
+symptoms entered C0008031 C0392680 C0002962 C0231807 C0003123 C0038990 C0013144 C0438716 C0235710 C0013404 predicted disease ischemia with probablity 0.42295011569421715 
+symptoms entered C0042963 C0013144 C0012833 C0027497 C0043096 C0281825 C0728899 C0030193 predicted disease gastritis with probablity 0.29170911569931569 
+symptoms entered C0018681 C0000737 C0004604 C1135120 C0027497 C0027497 C0042963 C0231230 C0240805 C0241252 C0241252 C0424790 C0424790 C0338656 C0338656 C0428977 C0428977 C0009806 C0009806 C0085602 C0242453 predicted disease malignant tumor of colon with probablity 0.21874411569931601 
+symptoms entered C0392680 C0008031 C0002962 C0231807 C0003123 C0038990 C0013144 C0438716 C0235710 C0013404 predicted disease ischemia with probablity 0.42295011569931637 
+symptoms entered C0392680 C0008031 C0002962 C0231807 C0003123 C0038990 C0013144 C0438716 C0235710 C0013404 C0232201 C0428977 C0034642 C0231221 predicted disease ischemia with probablity 0.86029251570182728 
+symptoms entered C0002962 C0008031 C0392680 C0038990 C0235710 C0012833 C0428977 C0085639 C0042571 predicted disease hypertensive disease with probablity 0.20280411570884003 
+symptoms entered C0392680 C0008031 C0002962 C0231807 C0003123 C0038990 C0013144 C0438716 C0013404 C0428977 C0231221 predicted disease ischemia with probablity 0.60390141574793367 
+symptoms entered C0008031 C0392680 C0002962 C0231807 C0003123 C0038990 C0013144 C0438716 C0013404 C0428977 predicted disease ischemia with probablity 0.43512331574793491 
+symptoms entered C0008031 C0012833 C0392680 C0002962 C0231807 C0086439 C0085619 C0232292 predicted disease coronary arteriosclerosis with probablity 0.23264621574793637 
+symptoms entered C0002962 C0004093 predicted disease acquired immuno-deficiency syndrome with probablity 0.0060650391574793637 
+symptoms entered C0002962 C0004093 predicted disease adenocarcinoma with probablity 0.00612451574793637 
+symptoms entered C0002962 C0004093 predicted disease adhesion with probablity 0.0060946611574793637 
+symptoms entered C0002962 C0004093 predicted disease chronic alcoholic intoxication with probablity 0.0060356331574793637 
+symptoms entered C0002962 C0004093 predicted disease Alzheimer's disease with probablity 0.0059774591574793637 
+symptoms entered C0002962 C0004093 predicted disease anemia with probablity 0.011783521574793637 
+symptoms entered C0002962 C0004093 predicted disease sickle cell anemia with probablity 0.0061545591574793637 
+symptoms entered C0002962 C0004093 predicted disease stenosis aortic valve with probablity 0.012309121574793638 
+symptoms entered C0002962 C0004093 predicted disease aphasia with probablity 0.0062460751574793638 
+symptoms entered C0002962 C0004093 predicted disease arthritis with probablity 0.012369681574793638 
+symptoms entered C0002962 C0004093 predicted disease asthma with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease bacteremia with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease benign prostatic hypertrophy with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease bipolar disorder with probablity 0.0056720421574793638 
+symptoms entered C0002962 C0004093 predicted disease malignant neoplasm of breast with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease spasm bronchial with probablity 0.0059774591574793638 
+symptoms entered C0002962 C0004093 predicted disease bronchitis with probablity 0.0059774591574793638 
+symptoms entered C0002962 C0004093 predicted disease malignant neoplasms with probablity 0.011560671574793638 
+symptoms entered C0002962 C0004093 predicted disease candidiasis with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease carcinoma with probablity 0.0059201211574793638 
+symptoms entered C0002962 C0004093 predicted disease malignant tumor of colon with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease cellulitis with probablity 0.0060650391574793638 
+symptoms entered C0002962 C0004093 predicted disease transient ischemic attack with probablity 0.011954921574793638 
+symptoms entered C0002962 C0004093 predicted disease cholecystitis with probablity 0.0059774591574793638 
+symptoms entered C0002962 C0004093 predicted disease cholelithiasis with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease colitis with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease confusion with probablity 0.011783521574793638 
+symptoms entered C0002962 C0004093 predicted disease coronary arteriosclerosis with probablity 0.012430691574793638 
+symptoms entered C0002962 C0004093 predicted disease deglutition disorder with probablity 0.012071271574793638 
+symptoms entered C0002962 C0004093 predicted disease dehydration with probablity 0.012071271574793638 
+symptoms entered C0002962 C0004093 predicted disease delirium with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease delusion with probablity 0.0058636051574793638 
+symptoms entered C0002962 C0004093 predicted disease depression mental with probablity 0.0058636051574793638 
+symptoms entered C0002962 C0004093 predicted disease diabetes with probablity 0.012130081574793638 
+symptoms entered C0002962 C0004093 predicted disease ketoacidosis diabetic with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease diverticulitis with probablity 0.0058917611574793638 
+symptoms entered C0002962 C0004093 predicted disease paroxysmal dyspnea with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease endocarditis with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease epilepsy with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease tonic-clonic epilepsy with probablity 0.0059774591574793638 
+symptoms entered C0002962 C0004093 predicted disease exanthema with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease gastritis with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease gastroenteritis with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease gastroesophageal reflux disease with probablity 0.011954921574793638 
+symptoms entered C0002962 C0004093 predicted disease glaucoma with probablity 0.006184841574793638 
+symptoms entered C0002962 C0004093 predicted disease gout with probablity 0.006184841574793638 
+symptoms entered C0002962 C0004093 predicted disease failure heart with probablity 0.012309121574793638 
+symptoms entered C0002962 C0004093 predicted disease failure heart congestive with probablity 0.0062770351574793638 
+symptoms entered C0002962 C0004093 predicted disease hemiparesis with probablity 0.011897371574793638 
+symptoms entered C0002962 C0004093 predicted disease hemorrhoids with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease hepatitis with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease hepatitis B with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease hepatitis C with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease primary carcinoma of the liver cells with probablity 0.0059486861574793638 
+symptoms entered C0002962 C0004093 predicted disease hernia with probablity 0.012012881574793638 
+symptoms entered C0002962 C0004093 predicted disease hernia hiatal with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease hyperbilirubinemia with probablity 0.0062460751574793638 
+symptoms entered C0002962 C0004093 predicted disease hypercholesterolemia with probablity 0.0060650391574793638 
+symptoms entered C0002962 C0004093 predicted disease hyperglycemia with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease hyperlipidemia with probablity 0.0122491574793638 
+symptoms entered C0002962 C0004093 predicted disease hypertensive disease with probablity 0.0244981574793638 
+symptoms entered C0002962 C0004093 predicted disease hypertension pulmonary with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease hypoglycemia with probablity 0.006184841574793638 
+symptoms entered C0002962 C0004093 predicted disease hypothyroidism with probablity 0.011727211574793638 
+symptoms entered C0002962 C0004093 predicted disease incontinence with probablity 0.012071271574793638 
+symptoms entered C0002962 C0004093 predicted disease infection with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease influenza with probablity 0.0058636051574793638 
+symptoms entered C0002962 C0004093 predicted disease ischemia with probablity 0.012189321574793638 
+symptoms entered C0002962 C0004093 predicted disease kidney disease with probablity 0.0063082251574793638 
+symptoms entered C0002962 C0004093 predicted disease kidney failure acute with probablity 0.012369681574793638 
+symptoms entered C0002962 C0004093 predicted disease chronic kidney failure with probablity 0.01167131574793638 
+symptoms entered C0002962 C0004093 predicted disease fibroid tumor with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease chronic obstructive airway disease with probablity 0.006184841574793638 
+symptoms entered C0002962 C0004093 predicted disease lymphatic diseases with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease lymphoma with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease manic disorder with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease melanoma with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease mitral valve insufficiency with probablity 0.0060650391574793638 
+symptoms entered C0002962 C0004093 predicted disease myocardial infarction with probablity 0.011897371574793638 
+symptoms entered C0002962 C0004093 predicted disease neoplasm metastasis with probablity 0.006184841574793638 
+symptoms entered C0002962 C0004093 predicted disease neoplasm with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease neutropenia with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease obesity with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease obesity morbid with probablity 0.012189321574793638 
+symptoms entered C0002962 C0004093 predicted disease degenerative polyarthritis with probablity 0.012309121574793638 
+symptoms entered C0002962 C0004093 predicted disease osteomyelitis with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease osteoporosis with probablity 0.0060650391574793638 
+symptoms entered C0002962 C0004093 predicted disease pancreatitis with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease pancytopenia with probablity 0.0062770351574793638 
+symptoms entered C0002962 C0004093 predicted disease parkinson disease with probablity 0.0059774591574793638 
+symptoms entered C0002962 C0004093 predicted disease ulcer peptic with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease effusion pericardial with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease personality disorder with probablity 0.0059201211574793638 
+symptoms entered C0002962 C0004093 predicted disease pneumonia with probablity 0.0059201211574793638 
+symptoms entered C0002962 C0004093 predicted disease pneumonia aspiration with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease Pneumocystis carinii pneumonia with probablity 0.0059486861574793638 
+symptoms entered C0002962 C0004093 predicted disease pneumothorax with probablity 0.0062460751574793638 
+symptoms entered C0002962 C0004093 predicted disease psychotic disorder with probablity 0.0057529731574793638 
+symptoms entered C0002962 C0004093 predicted disease edema pulmonary with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease embolism pulmonary with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease emphysema pulmonary with probablity 0.0058636051574793638 
+symptoms entered C0002962 C0004093 predicted disease pyelonephritis with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease failure kidney with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease schizophrenia with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease septicemia with probablity 0.0060650391574793638 
+symptoms entered C0002962 C0004093 predicted disease accident cerebrovascular with probablity 0.012492151574793638 
+symptoms entered C0002962 C0004093 predicted disease suicide attempt with probablity 0.0058078941574793638 
+symptoms entered C0002962 C0004093 predicted disease tachycardia sinus with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease thrombocytopaenia with probablity 0.0062153441574793638 
+symptoms entered C0002962 C0004093 predicted disease tricuspid valve insufficiency with probablity 0.006184841574793638 
+symptoms entered C0002962 C0004093 predicted disease upper respiratory infection with probablity 0.0056720421574793638 
+symptoms entered C0002962 C0004093 predicted disease infection urinary tract with probablity 0.0122491574793638 
+symptoms entered C0002962 C0004093 predicted disease peripheral vascular disease with probablity 0.012309121574793638 
+symptoms entered C0002962 C0004093 predicted disease encephalopathy with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease thrombus with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease deep vein thrombosis with probablity 0.00612451574793638 
+symptoms entered C0002962 C0004093 predicted disease migraine disorders with probablity 0.0062770351574793638 
+symptoms entered C0002962 C0004093 predicted disease affect labile with probablity 0.0062460751574793638 
+symptoms entered C0002962 C0004093 predicted disease malignant neoplasm of lung with probablity 0.012071271574793638 
+symptoms entered C0002962 C0004093 predicted disease malignant neoplasm of prostate with probablity 0.011615791574793638 
+symptoms entered C0002962 C0004093 predicted disease dependence with probablity 0.0060946611574793638 
+symptoms entered C0002962 C0004093 predicted disease neuropathy with probablity 0.012369681574793638 
+symptoms entered C0002962 C0004093 predicted disease dementia with probablity 0.0059774591574793638 
+symptoms entered C0002962 C0004093 predicted disease overload fluid with probablity 0.0061545591574793638 
+symptoms entered C0002962 C0004093 predicted disease anxiety state with probablity 0.0057803361574793638 
+symptoms entered C0002962 C0004093 predicted disease cardiomyopathy with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease respiratory failure with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease ileus with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease paranoia with probablity 0.006006441574793638 
+symptoms entered C0002962 C0004093 predicted disease diverticulosis with probablity 0.0060356331574793638 
+symptoms entered C0002962 C0004093 predicted disease insufficiency renal with probablity 0.011954921574793638 
+symptoms entered C0002962 C0004093 predicted disease cirrhosis with probablity 0.00612451577201697 
+symptoms entered C0392680 C0008031 C0002962 C0231807 C0003123 C0038990 C0013144 C0438716 C0428977 C0231221 predicted disease ischemia with probablity 0.50428221577215185 
+symptoms entered C0392680 C0008031 C0002962 C0231807 C0012833 C0003123 C0013144 C0438716 C0235710 C0013404 C0038990 predicted disease ischemia with probablity 0.3991071579273792 
+symptoms entered C0392680 C0008031 C0002962 C0012833 C0007398 C0003123 C0030252 C0085619 C0086439 C0004093 C0027497 C0039070 C0042571 predicted disease hypertensive disease with probablity 0.39752091579273847 
+symptoms entered C0008031 C0392680 C0002962 C0231807 C0003123 C0038990 C0036396 C0085619 C0039070 C0086439 C0232292 predicted disease coronary arteriosclerosis with probablity 0.25790191579273947 
+symptoms entered C0027497 C0012833 C0002962 C0039070 C0030193 C0004093 C0008031 C0042571 C0030252 predicted disease hypertensive disease with probablity 0.38375031579347662 
+symptoms entered C0392680 C0008031 C0002962 C0003123 C0438716 C0235710 C0428977 C0231221 predicted disease ischemia with probablity 0.3971858

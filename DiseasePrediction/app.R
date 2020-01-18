@@ -5,7 +5,7 @@
 # Find out more about building applications with Shiny here:
 #
 #    http://shiny.rstudio.com/
-#
+
 
 library(shiny)
 library(shinyjs)
@@ -15,13 +15,14 @@ library(tm)
 library(magrittr)
 library(RMariaDB)
 library(dplyr)
+library(googlesheets)
 #database related data
 sql.conf.file <- './healthpray_feedback.cnf'
 database.name <- 'healthpray_feedback'
 
 #global variable and intitialization
 num_cluster <- 5 # maximum number of cluster to create
-threshold <- 0.30 # minimum probablity to predict final disease name
+threshold <- 0.20 # minimum probablity to predict final disease name
 laplace <- 1 #laplace value for mnb classifier
 session_id <- 1 # 1 session per user
 cluster_id <- 0 
@@ -34,10 +35,14 @@ symptom.list <- list() # symptoms data user selected
 symptom.list.na <- list() # symptoms data user not selected
 cluster.df <- data.frame(NA,NA) # dataframe contain mapping of cluster id and ref cluster id
 names(cluster.df) <- c("id","ref_id")
+global.cluster.symptom <- vector("list")
 
 #global file data
 dictionary <- read.csv("../disease_symptom_dictionary.csv") #name and code mapping
 train_file <- read.csv("../disease_symptom_mapping_training.csv") #training data
+symptoms.select.df <- read.csv("../symptoms_code_mapping.csv")
+symptom.discription <- read.csv("../symptom_discription.csv")
+logfile <- "log.txt"
 code.value <- "067 111 100 101 032 098 121 032 075 097 114 116 104 105 107"
 
 #create mnb and dtm
@@ -55,14 +60,13 @@ disease <- as.vector(train_file$disease)
 #create multinomial naive bayes classifier
 mnb <- multinomial_naive_bayes(x = matrix.symptoms, y = disease, laplace = laplace)
 
-
 # #shiny js
  fieldsMandatory <- c("select")
 
 #global data shiny
 #dictionary <- read.csv("../disease_symptom_dictionary.csv") 
 ln <- length(dictionary$code)
-symptoms.select <- setNames(as.character(dictionary$code[150:ln]),dictionary$name[150:ln])
+symptoms.select <- setNames(as.character(symptoms.select.df$code),symptoms.select.df$val)
 checkbox.input <- list()
 #checkbox.input <- c("please complete first step")
 
@@ -87,12 +91,11 @@ ui <- fluidPage(
             strong("Hyperparameters"),
             br(),
             br(),
-            textInput("threshold", "Threshold", "0.3"),
-            textInput("numCluster", "number of clusters", "5"),
-            textInput("laplace", "laplace", "1"),
+            textInput("threshold", "Threshold", threshold),
+            textInput("numCluster", "number of clusters", num_cluster),
+            textInput("laplace", "laplace", laplace),
             br(),
-            fluidRow(column(12,strong("Disease Corpus"),tableOutput("diseasecorpus"))),
-            strong(em(span("Powered by Heathpray", style="color:blue")))
+            fluidRow(column(12,strong("Disease Corpus"),tableOutput("diseasecorpus")))
         ),
         
         # Show a plot of the generated distribution
@@ -107,7 +110,7 @@ ui <- fluidPage(
                                 choices = symptoms.select,multiple = TRUE,width = '1400px')),
                             tabPanel(title = "Step2",value = "tab2", checkboxGroupInput("symptoms","Do you feel any of This",
                                                                                          choices = symptoms.select)),
-                            tabPanel(title = "Output",value = "tab3", textOutput("finaloutput"),
+                            tabPanel(title = "Output",value = "tab3", tableOutput("finaloutput"),
                                      textOutput("finalprob"))),
                 actionButton("action", "Submit"),
                 
@@ -143,6 +146,7 @@ server <- function(session,input, output) {
     })
     observeEvent(input$action, {
         if(input$maintab =="tab1") {
+            intermediate.flag <<- FALSE
             showTab("maintab","tab2")
             intial.data <- main_predict(input$select)
             checkbox.input <- setNames(intial.data[[2]]$question_code,intial.data[[2]]$question)
@@ -160,31 +164,66 @@ server <- function(session,input, output) {
                 final.data <- final_predict(id,input$symptoms)
                 if(final.data[[1]] == 1) {
                     final.flag <<- TRUE
-                    disease_name <- final.data[[2]]
-                    disease_prob <- final.data[[3]]
+                    disease_data <- final.data[[2]]
                     
                 }else{
                     intermediate.flag <<- FALSE
                     intial.data <- final.data[[2]]
                     id <<- unlist(intial.data[[1]])
-                    checkbox.input <- setNames(intial.data[[2]]$question_code,
-                                               intial.data[[2]]$question)
-                    updateCheckboxGroupInput(session,"symptoms",choices = checkbox.input)
+                    if(is.na(intial.data[[2]])) {
+                        final.flag <<- TRUE
+                        intermediate.flag <<- TRUE
+                        disease_data <- data.frame(cause = paste("Sorry we couldn't find proper disease with probablity greater than",
+                                                                 threshold,", your symptoms till now are : ",sep = " "),
+                                                   symptoms_entered = toString(symptom.list[[session_id]]))
+                        # disease_name <- paste("Sorry we couldn't find proper disease with probablity greater than",
+                        #                       threshold,", your symptoms till now are : ",sep = " ")
+                        # disease_prob <- toString(symptom.list[[session_id]])
+                    }else {
+                        checkbox.input <- setNames(intial.data[[2]]$question_code,
+                                                   intial.data[[2]]$question)
+                        updateCheckboxGroupInput(session,"symptoms",choices = checkbox.input)
+                    }
+                    
                 }
             }else {
+                print("before intermediate_predict")
                 intermediate.data <- intermediate_predict(id,input$symptoms)
+                print(intermediate.data)
                 id <<- unlist(intermediate.data[[1]])
-                checkbox.input <- setNames(intermediate.data[[3]]$question_code,
-                                           intermediate.data[[3]]$question)
-                updateCheckboxGroupInput(session,"symptoms",choices = checkbox.input)
-                if(intermediate.data[[2]] == 1) {
-                    intermediate.flag <<- TRUE
-                    print("intermediate.flag")
+                
+                if(is.na(intermediate.data[[3]])) {
+                    if(intermediate.data[[2]] == 1) {
+                        intermediate.flag <<- TRUE 
+                    }else {
+                        final.flag <<- TRUE
+                        intermediate.flag <<- TRUE
+                        disease_data <- data.frame(cause = paste("Sorry we couldn't find proper disease with probablity greater than",
+                                                                 threshold,", your symptoms till now are : ",sep = " "),
+                                                   symptoms_entered = toString(symptom.list[[session_id]]))
+                        
+                        # disease_name <- paste("Sorry we couldn't find proper disease with probablity greater than",
+                        #                       threshold,", your symptoms till now are : ",sep = " ")
+                        # disease_prob <- toString(symptom.list[[session_id]])
+                    }
+                    
+                }else {
+                    question_code <- intermediate.data[[3]]$question_code
+                    question <- intermediate.data[[3]]$question
+                    checkbox.input <- setNames(question_code,question)
+                    updateCheckboxGroupInput(session,"symptoms",choices = checkbox.input)
+                    if(intermediate.data[[2]] == 1) {
+                        intermediate.flag <<- TRUE
+                        #final.flag <<- TRUE
+                        print("intermediate.flag")
+                    }
                 }
+                
             }
             if(final.flag && intermediate.flag) {
-                output$finaloutput <- renderText({
-                    paste(disease_name,disease_prob,sep = " -> ")
+                final.flag <<- FALSE
+                output$finaloutput <- renderTable({
+                    disease_data
                 })
                 output$finalprob <- renderText({
                     
@@ -233,6 +272,8 @@ server <- function(session,input, output) {
 
 #functions
 main_predict <- function(symptoms ,param.symptom.list.na = list()) {
+    
+    print("debug : in main_predict")
     #create test data, set colnames and fetch symptoms value
     testdata <- matrix(sample(0,1 * ncol(dtm),replace = TRUE),nrow = 1,ncol = ncol(dtm),byrow = TRUE)
     colnames(testdata) <- colnames(matrix.symptoms)
@@ -266,32 +307,34 @@ main_predict <- function(symptoms ,param.symptom.list.na = list()) {
     symptom.list.na[[session_id]] <<- param.symptom.list.na
     #create symptoms for each cluster
     cluster.symptom <- create_fuction(cluster)
+    global.cluster.symptom <<- cluster.symptom
     cluster_id <<- cluster_id + 1
     print(paste("cluster id",cluster_id,sep = " : "))
     cluster.list[[cluster_id]] <<- cluster
     temp.df <- data.frame(cluster_id,NA)
     names(temp.df) <- c("id","ref_id")
     cluster.df <<- bind_rows(cluster.df,temp.df)
-    print("df")
-    print(cluster.df)
-    print("cluster list")
-    print(cluster.list)
-    print("symptom list")
-    print(symptom.list)
-    print("symptom list na")
-    print(symptom.list.na)
+    # print("df")
+    # print(cluster.df)
+    # print("cluster list")
+    # print(cluster.list)
+    # print("symptom list")
+    # print(symptom.list)
+    # print("symptom list na")
+    # print(symptom.list.na)
     list(ID = cluster_id,return_question_object(cluster.symptom = cluster.symptom))
     
 }
 
 intermediate_predict <- function(question_id,answer) {
     
+    print("debug : in intermediate_predict")
     question_id <- as.numeric(question_id)
     symptom.list[[session_id]] <<- c(symptom.list[[session_id]],answer)
     print(symptom.list[[session_id]])
     #fetch cluster
     cluster <- cluster.list[[question_id]]
-    
+    previous.cluster.symptom <- global.cluster.symptom
     #check highest prob - backtracking
     highest_prob = high_prob(symptom.list[[session_id]])
     for(dis in highest_prob) {
@@ -303,7 +346,7 @@ intermediate_predict <- function(question_id,answer) {
     }
     
     #fetch cluster symptoms
-    previous.cluster.symptom <- create_fuction(cluster)
+    
     temp <- list()
     cluster.symptom.sub <- list()
     for(i in 1:length(cluster)) {
@@ -335,14 +378,14 @@ intermediate_predict <- function(question_id,answer) {
         cluster.temp = cluster[[cluster.rank.index]]
     }
     #debug msg
-    print("cluster rank")
-    print(cluster.rank)
+    # print("cluster rank")
+    # print(cluster.rank)
     
     #call prob_data to fetch probability where rank.cluster is set of disease
     cluster.prob.data <- prob_data(rank.cluster = cluster.temp,selected.symptoms = symptom.list[[session_id]])
     #cluster again from top rank cluster
     cluster.new <- cluster.local(cluster.prob.data,2)
-    
+    print(intersect(cluster.new,cluster.list[[cluster_id]]))
     cluster_id <<- cluster_id + 1
     
     #cluster has only one disease then it will be final cluster
@@ -351,20 +394,22 @@ intermediate_predict <- function(question_id,answer) {
                                                               train_file$disease)])
         cluster.symptom <- strsplit(cluster.symptom,split = " ") %>% as.vector(.)
         cluster.symptom <-setdiff(unlist(cluster.symptom),symptom.list[[session_id]])
-        cluster.symptom <- setdiff(unlist(cluster.symptom),symptom.list.na[[session_id]])
+        cluster.symptom <- setdiff(unlist(cluster.symptom),unlist(symptom.list.na[[session_id]]))
         # responce_link <- paste('http://',req$SERVER_NAME,':',req$SERVER_PORT,'/finalcall/',
         #                        cluster_id,sep = "")
+        global.cluster.symptom <<- cluster.symptom
         cluster.list[[cluster_id]] <<- cluster.new
-        print("symptom list")
-        print(symptom.list)
-        print("symptom list na")
-        print(symptom.list.na)
+        # print("symptom list")
+        # print(symptom.list)
+        # print("symptom list na")
+        # print(symptom.list.na)
         list(ID = cluster_id,is.next = 1,
              return_question_object(cluster.symptom))
         
     } else {
         #create symptom set for new cluster
         cluster.symptom.new <- create_fuction(cluster.new)
+        global.cluster.symptom <<- cluster.symptom.new
         #debug msg
         print(paste("cluster id",cluster_id,sep = " : "))
         print("mapping symptom's for cluster")
@@ -373,25 +418,32 @@ intermediate_predict <- function(question_id,answer) {
         temp.df <- data.frame(cluster_id,question_id)
         names(temp.df) <- c("id","ref_id")
         cluster.df <<- bind_rows(cluster.df,temp.df)
-        print("df")
-        print(cluster.df)
-        print("cluster list")
-        print(cluster.list)
-        print("symptom list")
-        print(symptom.list)
-        print("symptom list na")
-        print(symptom.list.na)
+        # print("df")
+        # print(cluster.df)
+        # print("cluster list")
+        # print(cluster.list)
+        # print("symptom list")
+        # print(symptom.list)
+        # print("symptom list na")
+        # print(symptom.list.na)
         list(ID = cluster_id,is.next = 0,return_question_object(cluster.symptom.new))
     }
 }
 
 final_predict <- function(question_id,symptoms) {
     
+    print("debug : in final_predict")
     question_id <- as.numeric(question_id)
+    
+    #update symptoms and symptoms.na
+    symptom.list[[session_id]] <<- c(symptom.list[[session_id]],symptoms)
+    
+    symptom.list.na[[session_id]] <<- c(symptom.list.na[[session_id]],setdiff(unlist(global.cluster.symptom),
+                                                                              unlist(symptom.list[[session_id]])))
+    
     
     #create new test data and add colnames
     testdata <- matrix(sample(0,1 * ncol(dtm),replace = TRUE),nrow = 1,ncol = ncol(dtm),byrow = TRUE)
-    symptom.list[[session_id]] <<- c(symptom.list[[session_id]],symptoms)
     colnames(testdata) <- colnames(matrix.symptoms)
     
     #update test data
@@ -418,9 +470,24 @@ final_predict <- function(question_id,symptoms) {
         
     }else {
         names <- colnames(prob.data)
+        #test
         
-        return(list(complete = 1,disease_name = dictionary$name[match(unlist(cluster.list[[question_id]]),dictionary$code)],
-                    probablity =   prob.data[match(unlist(cluster.list[[question_id]]),colnames(prob.data))] * 100,
+        p1 <- round(prob.data,1)
+        data <- vector("list")
+        j <- 1
+        val <- which(p1 %in% max(p1))
+        name <- colnames(p1)
+        for (i in val) {
+            data[[j]] <- data_frame(disease_name = dictionary$name[match(name[i],dictionary$code)],
+                                    probablity = prob.data[i] * 100)
+            cat(file = logfile,Sys.time(),"\nsymptoms entered",symptom.list[[session_id]],"predicted disease",
+                toString(dictionary$name[match(name[i],dictionary$code)]),
+                "with probablity",prob.data[i],append = TRUE)
+            j <- j + 1
+        }
+        data.df <- bind_rows(data)
+        #test
+        return(list(complete = 1,data = data.df,
                     max_prob_disease = dictionary$name[match(names[which(prob.data %in% max(prob.data))],dictionary$code)],
                     max_prob = max(prob.data)))
     }
@@ -438,7 +505,7 @@ cluster.local <- function(prob.data,roundval) {
     #create maximum of num_cluster of clusters
     cluster <- list()
     for(i in 1:num_cluster) {
-        print(paste("creating cluster",i,sep = " : "))
+        #print(paste("creating cluster",i,sep = " : "))
         temp <- which(prob.data %in% prob.data.unique[i])
         cluster.disease <- vector()
         j <- 1
@@ -460,7 +527,7 @@ create_fuction <- function(cluster) {
     cluster.symptom.count <- 1
     
     for(cluster.len in 1:length(cluster)) {
-        print(paste("going with cluster",cluster.len,sep = " : "))
+        #print(paste("going with cluster",cluster.len,sep = " : "))
         j <- 1
         cluster_1.symptom <- vector()
         cluster_1.disease <- cluster[[cluster.len]]
@@ -542,18 +609,32 @@ create_fuction <- function(cluster) {
 
 #return readable question data frame which contain symptom name and code and answer type
 return_question_object <- function(cluster.symptom) {
-    k <- 1
-    symptom.name <- vector("list")
-    for(i in 1:length(cluster.symptom)) {
-        cluster = cluster.symptom[i]
-        
-        for(j in 1:length(cluster[[1]])) {
-            symptom.name[[k]] <- data_frame(question = dictionary$name[which(dictionary$code %in% cluster[[1]][j])],
-                                            question_code = unlist(cluster[[1]][j]))
-            k <- k + 1
+    if(length(cluster.symptom) == 0) {
+        return(NA)
+    }else if(length(cluster.symptom) == 1 && cluster.symptom == "") {
+        return(NA)
+        }else {
+        k <- 1
+        symptom.name <- vector("list")
+        for(i in 1:length(cluster.symptom)) {
+            cluster = cluster.symptom[i]
+            
+            for(j in 1:length(cluster[[1]])) {
+                if(cluster[[1]][j] %in% symptom.discription$code) {
+                    index <- match(cluster[[1]][j],symptom.discription$code)
+                    symptom.name[[k]] <- data_frame(question = paste(symptom.discription$name[index],"(",symptom.discription$discription[index],")",sep = ""),
+                                                    question_code = unlist(cluster[[1]][j]))
+                }else{
+                    symptom.name[[k]] <- data_frame(question = dictionary$name[which(dictionary$code %in% cluster[[1]][j])],
+                                                    question_code = unlist(cluster[[1]][j]))
+                }
+                
+                k <- k + 1
+            }
         }
+        return(unique(bind_rows(symptom.name)))
     }
-    return(unique(bind_rows(symptom.name)))
+    
 }
 
 #rank cluster 
